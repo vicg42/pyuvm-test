@@ -1,7 +1,7 @@
 CWD=$(shell pwd)
 export COCOTB_REDUCED_LOG_FMT = 1
 SIM ?= icarus
-# SIM ?= verilator
+#SIM ?= verilator
 TOPLEVEL_LANG ?= verilog
 ifeq ($(TOPLEVEL_LANG),verilog)
 	VERILOG_SOURCES +=$(CWD)/hdl/verilog/tinyalu.sv

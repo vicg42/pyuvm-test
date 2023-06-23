@@ -12,6 +12,8 @@ module tinyalu (
 wire [15:0]     result_aax, result_mult;
 wire            start_single, start_mult;
 bit clk;
+wire done_aax;
+wire done_mult;
 
 initial clk = 0;
 always #5 clk = ~clk;
