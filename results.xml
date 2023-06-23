@@ -1,8 +1,0 @@
-<testsuites name="results">
-  <testsuite name="all" package="all">
-    <property name="random_seed" value="1687532878" />
-    <testcase classname="testbench" file="/home/v.halavachenka/.local/lib/python3.6/site-packages/pyuvm/extension_classes.py" lineno="260" name="AluTest" ratio_time="23149510.829650152" sim_time_ns="251000" time="0.010842561721801758" />
-    <testcase classname="testbench" file="/home/v.halavachenka/.local/lib/python3.6/site-packages/pyuvm/extension_classes.py" lineno="276" name="ParallelTest" ratio_time="25571282.251377847" sim_time_ns="250000" time="0.009776592254638672" />
-    <testcase classname="testbench" file="/home/v.halavachenka/.local/lib/python3.6/site-packages/pyuvm/extension_classes.py" lineno="285" name="FibonacciTest" ratio_time="19321257.31628008" sim_time_ns="170000" time="0.008798599243164062" />
-  </testsuite>
-</testsuites>
