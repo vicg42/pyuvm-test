@@ -1,2 +1,2 @@
 # pyuvm-test
-*ttt
+* git clone https://github.com/pyuvm/pyuvm.git
