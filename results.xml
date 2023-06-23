@@ -1,8 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1687536124" />
-    <testcase classname="testbench" file="/home/v.halavachenka/.local/lib/python3.6/site-packages/pyuvm/extension_classes.py" lineno="257" name="AluTest" ratio_time="18224739.535366826" sim_time_ns="251000" time="0.01377248764038086" />
-    <testcase classname="testbench" file="/home/v.halavachenka/.local/lib/python3.6/site-packages/pyuvm/extension_classes.py" lineno="273" name="ParallelTest" ratio_time="17396243.944521867" sim_time_ns="250000" time="0.014370918273925781" />
-    <testcase classname="testbench" file="/home/v.halavachenka/.local/lib/python3.6/site-packages/pyuvm/extension_classes.py" lineno="282" name="FibonacciTest" ratio_time="18451290.75665045" sim_time_ns="170000" time="0.009213447570800781" />
+    <property name="random_seed" value="1687541238" />
+    <testcase classname="testbench" file="/home/v.halavachenka/.local/lib/python3.6/site-packages/pyuvm/extension_classes.py" lineno="257" name="AluTest" ratio_time="22595516.483516484" sim_time_ns="251000" time="0.0111083984375" />
+    <testcase classname="testbench" file="/home/v.halavachenka/.local/lib/python3.6/site-packages/pyuvm/extension_classes.py" lineno="273" name="ParallelTest" ratio_time="24380385.500709154" sim_time_ns="250000" time="0.010254144668579102" />
+    <testcase classname="testbench" file="/home/v.halavachenka/.local/lib/python3.6/site-packages/pyuvm/extension_classes.py" lineno="282" name="FibonacciTest" ratio_time="20671179.9153476" sim_time_ns="170000" time="0.008224010467529297" />
   </testsuite>
 </testsuites>
