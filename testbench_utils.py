@@ -1,10 +1,7 @@
 import cocotb
-from cocotb.triggers import FallingEdge
-from cocotb.queue import QueueEmpty, Queue
 import enum
 import logging
-
-from pyuvm import utility_classes
+import pyuvm
 
 logging.basicConfig(level=logging.NOTSET)
 logger = logging.getLogger()
@@ -44,12 +41,12 @@ def get_int(signal):
     return sig
 
 
-class TinyAluBfm(metaclass=utility_classes.Singleton):
+class TinyAluBfm(metaclass=pyuvm.utility_classes.Singleton):
     def __init__(self):
         self.dut = cocotb.top
-        self.driver_queue = Queue(maxsize=1)
-        self.cmd_mon_queue = Queue(maxsize=0)
-        self.result_mon_queue = Queue(maxsize=0)
+        self.driver_queue = cocotb.queue.Queue(maxsize=1)
+        self.cmd_mon_queue = cocotb.queue.Queue(maxsize=0)
+        self.result_mon_queue = cocotb.queue.Queue(maxsize=0)
 
     async def send_op(self, aa, bb, op):
         command_tuple = (aa, bb, op)
@@ -64,14 +61,14 @@ class TinyAluBfm(metaclass=utility_classes.Singleton):
         return result
 
     async def reset(self):
-        await FallingEdge(self.dut.clk)
+        await cocotb.triggers.FallingEdge(self.dut.clk)
         self.dut.reset_n.value = 0
         self.dut.A.value = 0
         self.dut.B.value = 0
         self.dut.op.value = 0
-        await FallingEdge(self.dut.clk)
+        await cocotb.triggers.FallingEdge(self.dut.clk)
         self.dut.reset_n.value = 1
-        await FallingEdge(self.dut.clk)
+        await cocotb.triggers.FallingEdge(self.dut.clk)
 
     async def driver_bfm(self):
         self.dut.start.value = 0
@@ -79,7 +76,7 @@ class TinyAluBfm(metaclass=utility_classes.Singleton):
         self.dut.B.value = 0
         self.dut.op.value = 0
         while True:
-            await FallingEdge(self.dut.clk)
+            await cocotb.triggers.FallingEdge(self.dut.clk)
             start = get_int(self.dut.start)
             done = get_int(self.dut.done)
             if start == 0 and done == 0:
@@ -89,7 +86,7 @@ class TinyAluBfm(metaclass=utility_classes.Singleton):
                     self.dut.B.value = bb
                     self.dut.op.value = op
                     self.dut.start.value = 1
-                except QueueEmpty:
+                except cocotb.queue.QueueEmpty:
                     pass
             elif start == 1:
                 if done == 1:
@@ -98,7 +95,7 @@ class TinyAluBfm(metaclass=utility_classes.Singleton):
     async def cmd_mon_bfm(self):
         prev_start = 0
         while True:
-            await FallingEdge(self.dut.clk)
+            await cocotb.triggers.FallingEdge(self.dut.clk)
             start = get_int(self.dut.start)
             if start == 1 and prev_start == 0:
                 cmd_tuple = (get_int(self.dut.A),
@@ -110,7 +107,7 @@ class TinyAluBfm(metaclass=utility_classes.Singleton):
     async def result_mon_bfm(self):
         prev_done = 0
         while True:
-            await FallingEdge(self.dut.clk)
+            await cocotb.triggers.FallingEdge(self.dut.clk)
             done = get_int(self.dut.done)
             if prev_done == 0 and done == 1:
                 result = get_int(self.dut.result)
